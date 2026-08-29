@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meshari Binhindi — Contact card</title>
-<meta name="description" content="Digital business card of Meshari Binhindi — Andexa">
+<title>Hasan Ashmawi — Contact card</title>
+<meta name="description" content="Digital business card of Hasan Ashmawi — Andexa">
 <meta name="theme-color" content="#0E1412">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -269,12 +269,12 @@
         </div>
       </div>
 
-      <div class="portrait"><img src="photo.jpg" alt="Meshari Binhindi"></div>
+      <div class="portrait seal" aria-hidden="true"><span data-ar="ح" data-en="H">H</span></div>
 
       <div class="identity">
-        <h1 class="name" data-ar="مشاري بن هندي" data-en="Meshari Binhindi">Meshari Binhindi</h1>
+        <h1 class="name" data-ar="حسن عشماوي" data-en="Hasan Ashmawi">Hasan Ashmawi</h1>
         <p class="role">
-          <span data-ar="شريك مؤسس ورئيس تنفيذي" data-en="Co-Founder &amp; CEO">Co-Founder &amp; CEO</span>
+          <span data-ar="رئيس تطوير الأعمال" data-en="Business Development Head">Business Development Head</span>
           <span aria-hidden="true"> · </span>
           <span class="org" data-ar="أنديكسا" data-en="Andexa">Andexa</span>
         </p>
@@ -308,7 +308,7 @@
       </nav>
 
       <div class="buttons">
-        <a class="btn btn-primary" id="saveContact" href="meshari.vcf" download="Meshari-Yaser-Binhindi.vcf">
+        <a class="btn btn-primary" id="saveContact" href="hasan.vcf" download="Hasan-Ashmawi.vcf">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
           <span data-ar="أضفني إلى جهات الاتصال" data-en="Save my contact">Save my contact</span>
         </a>
@@ -337,7 +337,7 @@
 <script src="/qrcode.min.js"></script>
 <script>
   /* generated from people/<slug>/card.json by tools/build.py — do not edit here */
-  const CARD = {"url": "", "phone": "+966547054523", "whatsapp": "966547054523", "email": "m.binhindi@andexa.tech", "website": "https://andexa.tech", "linkedin": "https://www.linkedin.com/in/meshari-y-binhindi-2250b322b", "fullName": "Meshari Yaser Binhindi", "jobTitle": "Co-Founder & CEO", "org": "Andexa", "notes": "Andexa — AI Data Analyst", "vcf": "meshari.vcf"};
+  const CARD = {"url": "", "phone": "+966557734377", "whatsapp": "966557734377", "email": "", "website": "https://andexa.tech", "linkedin": "https://www.linkedin.com/in/hasan-ashmawi-b4a57b54/", "fullName": "Hasan Ashmawi", "jobTitle": "Business Development Head", "org": "Andexa", "notes": "Andexa — AI Data Analyst", "vcf": "hasan.vcf"};
 
   function bindAction(id, href) {
     const el = document.getElementById(id);
@@ -403,7 +403,7 @@
     document.documentElement.lang = lang;
     document.documentElement.dir = isAr ? "rtl" : "ltr";
     langToggle.textContent = isAr ? "English" : "عربي";
-    document.title = isAr ? "مشاري بن هندي — بطاقة تواصل" : "Meshari Binhindi — Contact card";
+    document.title = isAr ? "حسن عشماوي — بطاقة تواصل" : "Hasan Ashmawi — Contact card";
     document.querySelectorAll("[data-ar]").forEach(el => {
       el.textContent = isAr ? el.dataset.ar : el.dataset.en;
     });

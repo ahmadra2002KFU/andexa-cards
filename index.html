@@ -14,8 +14,8 @@
   body{min-height:100vh;background:var(--bg);color:var(--ink);
     font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
     display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 18px}
-  .wordmark{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:.85rem;
-    letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-bottom:22px}
+  .brand{margin-bottom:24px}
+  .brand img{height:30px;width:auto;display:block}
   .list{width:100%;max-width:400px;display:flex;flex-direction:column;gap:10px}
   .person{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--ink);
     background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
@@ -25,9 +25,11 @@
 </style>
 </head>
 <body>
-  <div class="wordmark">Andexa</div>
+  <div class="brand"><img src="/logo-white.png" alt="Andexa"></div>
   <nav class="list">
       <a class="person" href="/ahmad/"><strong>Ahmad Rabaiah</strong><span>Co-Founder &amp; CTO</span></a>
+      <a class="person" href="/fares/"><strong>Fares</strong><span>Strategic Partnership Head</span></a>
+      <a class="person" href="/hasan/"><strong>Hasan Ashmawi</strong><span>Business Development Head</span></a>
       <a class="person" href="/meshari/"><strong>Meshari Binhindi</strong><span>Co-Founder &amp; CEO</span></a>
   </nav>
 </body>
