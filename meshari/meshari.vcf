@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+N;CHARSET=UTF-8:Binhindi;Meshari;Yaser;;
+FN;CHARSET=UTF-8:Meshari Yaser Binhindi
+X-PHONETIC-FIRST-NAME;CHARSET=UTF-8:مشاري
+X-PHONETIC-LAST-NAME;CHARSET=UTF-8:بن هندي
+ORG;CHARSET=UTF-8:Andexa
+TITLE;CHARSET=UTF-8:Co-Founder & CEO
+TEL;TYPE=CELL:+966547054523
+EMAIL;TYPE=WORK:m.binhindi@andexa.tech
+URL:https://andexa.tech
+item1.URL:https://www.linkedin.com/in/meshari-y-binhindi-2250b322b
+item1.X-ABLabel:LinkedIn
+NOTE;CHARSET=UTF-8:Andexa — AI Data Analyst
+END:VCARD

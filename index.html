@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andexa — Team cards</title>
+<meta name="theme-color" content="#0E1412">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0E1412;--surface:#151D1A;--ink:#EDEAE0;--muted:#9AA09A;--line:#273129;--accent:#56A896}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{min-height:100vh;background:var(--bg);color:var(--ink);
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 18px}
+  .wordmark{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:.85rem;
+    letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-bottom:22px}
+  .list{width:100%;max-width:400px;display:flex;flex-direction:column;gap:10px}
+  .person{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--ink);
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+  .person:hover{border-color:var(--accent)}
+  .person strong{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.15rem}
+  .person span{font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="wordmark">Andexa</div>
+  <nav class="list">
+      <a class="person" href="/ahmad/"><strong>Ahmad Rabaiah</strong><span>Co-Founder</span></a>
+      <a class="person" href="/meshari/"><strong>Meshari Binhindi</strong><span>Co-Founder &amp; CEO</span></a>
+  </nav>
+</body>
+</html>
