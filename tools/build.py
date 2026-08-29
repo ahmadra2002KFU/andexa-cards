@@ -44,16 +44,22 @@ def build_vcf(p: dict, photo: Path | None) -> str:
         "VERSION:3.0",
         f"N;CHARSET=UTF-8:{v['family']};{v['given']};{v.get('middle', '')};;",
         f"FN;CHARSET=UTF-8:{p['full_name_en']}",
-        f"X-PHONETIC-FIRST-NAME;CHARSET=UTF-8:{p['phonetic_first_ar']}",
-        f"X-PHONETIC-LAST-NAME;CHARSET=UTF-8:{p['phonetic_last_ar']}",
+    ]
+    if p.get("phonetic_first_ar"):
+        lines.append(f"X-PHONETIC-FIRST-NAME;CHARSET=UTF-8:{p['phonetic_first_ar']}")
+    if p.get("phonetic_last_ar"):
+        lines.append(f"X-PHONETIC-LAST-NAME;CHARSET=UTF-8:{p['phonetic_last_ar']}")
+    lines += [
         f"ORG;CHARSET=UTF-8:{p['org']}",
         f"TITLE;CHARSET=UTF-8:{p['title_en']}",
         f"TEL;TYPE=CELL:{p['phone']}",
-        f"EMAIL;TYPE=WORK:{p['email']}",
-        f"URL:{p['website']}",
-        f"item1.URL:{p['linkedin']}",
-        "item1.X-ABLabel:LinkedIn",
     ]
+    if p.get("email"):
+        lines.append(f"EMAIL;TYPE=WORK:{p['email']}")
+    if p.get("website"):
+        lines.append(f"URL:{p['website']}")
+    if p.get("linkedin"):
+        lines += [f"item1.URL:{p['linkedin']}", "item1.X-ABLabel:LinkedIn"]
     if photo:
         im = Image.open(photo).convert("RGB")
         im.thumbnail((320, 320), Image.LANCZOS)
@@ -85,10 +91,10 @@ def render_card(template: str, p: dict, slug: str, has_photo: bool) -> str:
         {
             "url": "",  # empty = the page's own URL (QR + Android fallback)
             "phone": p["phone"],
-            "whatsapp": p["whatsapp"],
-            "email": p["email"],
-            "website": p["website"],
-            "linkedin": p["linkedin"],
+            "whatsapp": p.get("whatsapp", ""),
+            "email": p.get("email", ""),
+            "website": p.get("website", ""),
+            "linkedin": p.get("linkedin", ""),
             "fullName": p["full_name_en"],
             "jobTitle": p["title_en"],
             "org": p["org"],
@@ -139,8 +145,8 @@ def render_directory(entries: list[dict]) -> str:
   body{{min-height:100vh;background:var(--bg);color:var(--ink);
     font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
     display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 18px}}
-  .wordmark{{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:.85rem;
-    letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-bottom:22px}}
+  .brand{{margin-bottom:24px}}
+  .brand img{{height:30px;width:auto;display:block}}
   .list{{width:100%;max-width:400px;display:flex;flex-direction:column;gap:10px}}
   .person{{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--ink);
     background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px}}
@@ -150,7 +156,7 @@ def render_directory(entries: list[dict]) -> str:
 </style>
 </head>
 <body>
-  <div class="wordmark">Andexa</div>
+  <div class="brand"><img src="/logo-white.png" alt="Andexa"></div>
   <nav class="list">
 {rows}
   </nav>
@@ -165,6 +171,8 @@ def main() -> None:
         shutil.rmtree(SITE)
     SITE.mkdir()
     shutil.copy(ROOT / "template" / "qrcode.min.js", SITE / "qrcode.min.js")
+    shutil.copy(ROOT / "template" / "logo-white.png", SITE / "logo-white.png")
+    shutil.copy(ROOT / "template" / "logo-ink.png", SITE / "logo-ink.png")
     (SITE / "CNAME").write_text(DOMAIN + "\n", encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
 

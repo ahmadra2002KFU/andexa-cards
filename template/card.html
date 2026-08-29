@@ -110,6 +110,10 @@
     color:var(--muted);
     text-transform:uppercase;
   }
+  .brand img{height:22px;width:auto;display:block}
+  .brand .logo-light{display:none}
+  html[data-theme="light"] .brand .logo-dark{display:none}
+  html[data-theme="light"] .brand .logo-light{display:block}
   .controls{display:flex;gap:8px}
   .chip{
     border:1px solid var(--line);
@@ -179,8 +183,9 @@
   .rule svg{display:block}
 
   /* ---------- actions ---------- */
-  .actions{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+  .actions{display:flex;justify-content:center;gap:6px}
   .action{
+    flex:1 1 0;
     display:flex;flex-direction:column;align-items:center;gap:8px;
     padding:12px 4px 10px;
     border-radius:12px;
@@ -255,7 +260,7 @@
     <!-- front face -->
     <section class="face front" aria-hidden="false">
       <div class="topbar">
-        <span class="wordmark">Andexa</span>
+        <span class="brand" aria-label="Andexa"><img class="logo-dark" src="/logo-white.png" alt="Andexa"><img class="logo-light" src="/logo-ink.png" alt=""></span>
         <div class="controls">
           <button class="chip" id="themeToggle" type="button" aria-label="Switch theme">
             <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -334,11 +339,15 @@
   /* generated from people/<slug>/card.json by tools/build.py — do not edit here */
   const CARD = {{CARD_JSON}};
 
-  document.getElementById("linkCall").href = "tel:" + CARD.phone;
-  document.getElementById("linkWhatsApp").href = "https://wa.me/" + CARD.whatsapp;
-  document.getElementById("linkEmail").href = "mailto:" + CARD.email;
-  document.getElementById("linkSite").href = CARD.website;
-  document.getElementById("linkLinkedIn").href = CARD.linkedin;
+  function bindAction(id, href) {
+    const el = document.getElementById(id);
+    if (href) el.href = href; else el.remove();
+  }
+  bindAction("linkCall", CARD.phone ? "tel:" + CARD.phone : "");
+  bindAction("linkWhatsApp", CARD.whatsapp ? "https://wa.me/" + CARD.whatsapp : "");
+  bindAction("linkEmail", CARD.email ? "mailto:" + CARD.email : "");
+  bindAction("linkSite", CARD.website);
+  bindAction("linkLinkedIn", CARD.linkedin);
 
   /* Save-contact button, per platform:
      - Android: INSERT-contact intent — opens the new-contact screen pre-filled
@@ -353,10 +362,10 @@
       "type=vnd.android.cursor.dir/contact;" +
       "S.name=" + enc(CARD.fullName) + ";" +
       "S.phone=" + enc(CARD.phone) + ";" +
-      "S.email=" + enc(CARD.email) + ";" +
+      (CARD.email ? "S.email=" + enc(CARD.email) + ";" : "") +
       "S.company=" + enc(CARD.org) + ";" +
       "S.job_title=" + enc(CARD.jobTitle) + ";" +
-      "S.notes=" + enc(CARD.notes + " · " + CARD.website + " · " + CARD.linkedin) + ";" +
+      "S.notes=" + enc([CARD.notes, CARD.website, CARD.linkedin].filter(Boolean).join(" · ")) + ";" +
       "S.browser_fallback_url=" + enc(new URL(CARD.vcf, location.href).href) + ";" +
       "end";
   } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
